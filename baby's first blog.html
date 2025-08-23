@@ -18,44 +18,30 @@
 
 				<!-- Main -->
 					<div id="main">
-  <div class="inner">
+						<div class="inner">
 
-    <!-- Header -->
-    <header id="header">
-      <a href="index.html" class="logo">You're <strong>already on this site</strong></a>
-    </header>
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">You're <strong>already on this site</strong></a>
+								</header>
 
-    <!-- Banner -->
-    <section id="banner">
-      <div class="content">
-        <header>
-          <h1>I will type here</h1>
-          <p>and figure it out later</p>
-        </header>
-        
-        <!-- Paragraph that will be replaced with text from .txt file -->
-        <p id="dynamic-text">Loading text...</p>
-      </div>
-      <span class="image object">
-        <img src="images/myguy.png" alt="where is my guy!!??" />
-      </span>
-    </section>
-  </div>
-</div>
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1>I will type here</h1>
+											<p>and figure it out later</p>
+										</header>
 
-<script>
-  // Dynamically load text into the paragraph
-  fetch("example.txt")
-    .then(response => response.text())
-    .then(text => {
-      document.getElementById("dynamic-text").innerText = text;
-    })
-    .catch(error => {
-      document.getElementById("dynamic-text").innerText = "Error loading text.";
-      console.error("Error loading text file:", error);
-    });
-</script>
-
+										<!-- Dynamic text goes here -->
+										<p id="dynamic-text">Loading text...</p>
+									</div>
+									<span class="image object">
+										<img src="images/myguy.png" alt="where is my guy!!??" />
+									</span>
+								</section>
+						</div>
+					</div>
 
 				<!-- Sidebar -->
 					<div id="sidebar">
@@ -138,5 +124,18 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<!-- Dynamic TXT Loader -->
+			<script>
+				fetch("example.txt")
+					.then(response => response.text())
+					.then(text => {
+						// preserve line breaks from the .txt
+						document.getElementById("dynamic-text").innerHTML = text.replace(/\n/g, "<br>");
+					})
+					.catch(error => {
+						document.getElementById("dynamic-text").innerText = "Error loading text.";
+						console.error("Error loading text file:", error);
+					});
+			</script>
 	</body>
 </html>
